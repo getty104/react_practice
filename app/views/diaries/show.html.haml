@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @diary.title
+%p
+  %b Body:
+  = @diary.body
+
+= link_to 'Edit', edit_diary_path(@diary)
+\|
+= link_to 'Back', diaries_path

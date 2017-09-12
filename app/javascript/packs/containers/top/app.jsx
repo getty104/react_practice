@@ -11,7 +11,9 @@ function mapStateToProps(state) {
 function DispatchToProps(dispatch) {
   return {
     incrementhandleClick: () => { dispatch(Execution.increment()) },
-    decrementhandleClick: () => { dispatch(Execution.decrement()) }
+    decrementhandleClick: () => { dispatch(Execution.decrement()) },
+    mulhandleClick: () => { dispatch(Execution.mul()) },
+    divhandleClick: () => { dispatch(Execution.div()) }
   }
 }
 

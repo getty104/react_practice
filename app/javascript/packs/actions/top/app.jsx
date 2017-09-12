@@ -7,5 +7,13 @@ export default {
 
   decrement: () => {
     return { type: App.DECREMENT }
+  },
+
+  mul: () => {
+    return { type: App.MUL }
+  },
+
+  div: () => {
+    return { type: App.DIV }
   }
 }

@@ -1,16 +1,24 @@
-import * as App from "../../constants/top/app"
+import * as Constant from "../../constants/top/app"
 const initialState = {
   fuga: 1
 }
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
-    case App.INCREMENT: {
+    case Constant.INCREMENT: {
       return { fuga: state.fuga + 1 }
     }
 
-    case App.DECREMENT: {
+    case Constant.DECREMENT: {
       return { fuga: state.fuga - 1 }
+    }
+
+    case Constant.MUL: {
+      return { fuga: state.fuga * 2 }
+    }
+
+    case Constant.DIV: {
+      return { fuga: state.fuga / 2 }
     }
 
     default:
