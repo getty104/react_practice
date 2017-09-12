@@ -1,64 +1,67 @@
-class DiariesController < ApplicationController
+class Api::DiariesController < Api::ApplicationController
   before_action :set_diary, only: [:show, :edit, :update, :destroy]
 
   # GET /diaries
+  # GET /diaries.json
   def index
     @diaries = Diary.all
+    render json: @diaries
   end
 
   # GET /diaries/1
+  # GET /diaries/1.json
   def show
+    render json: @diary
   end
 
   # GET /diaries/new
   def new
-    respond_to do |format|
-      format.json {
-
-      }
-    end
     @diary = Diary.new
-    }
+    render json: @diary
   end
 
   # GET /diaries/1/edit
   def edit
+    render json: @diary
   end
 
   # POST /diaries
+  # POST /diaries.json
   def create
     @diary = Diary.new(diary_params)
 
     if @diary.save
-      redirect_to @diary, notice: 'Diary was successfully created.'
+      render :json, status: :created, location: @diary
     else
-      render :new
+      render json: @diary.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /diaries/1
+  # PATCH/PUT /diaries/1.json
   def update
     if @diary.update(diary_params)
-      redirect_to @diary, notice: 'Diary was successfully updated.'
+      render :json, status: :ok, location: @diary
     else
-      render :edit
+      render json: @diary.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /diaries/1
+  # DELETE /diaries/1.json
   def destroy
     @diary.destroy
-    redirect_to diaries_url, notice: 'Diary was successfully destroyed.'
+      render json: (head :no_content)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_diary
-      @diary = Diary.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_diary
+    @diary = Diary.find(params[:id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def diary_params
-      params.require(:diary).permit(:title, :body)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def diary_params
+    params.require(:diary).permit(:title, :body)
+  end
 end

@@ -9,3 +9,4 @@ export default {
     return { type: Constant.back }
   }
 }
+

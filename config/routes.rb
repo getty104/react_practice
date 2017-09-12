@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :diaries
   root 'welcome#top'
+
   get 'diaries/*path' => 'welcome#top'
-  namespace :api do
-    end
+
+  namespace :api, { format: 'json' } do
+    resources :diaries
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
