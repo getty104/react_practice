@@ -4,7 +4,7 @@ class Api::DiariesController < Api::ApplicationController
   # GET /diaries
   # GET /diaries.json
   def index
-    @diaries = Diary.all
+    @diaries = Diary.offset(params[:page].to_i*10).limit(10)
     render json: @diaries
   end
 

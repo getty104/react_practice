@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import {
   Table,
   TableBody,
@@ -7,6 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class Index extends React.Component {
   render() {
@@ -15,18 +16,22 @@ export default class Index extends React.Component {
     <TableHeader>
       <TableRow>
         <TableHeaderColumn>ID</TableHeaderColumn>
-        <TableHeaderColumn>Name</TableHeaderColumn>
-        <TableHeaderColumn>Status</TableHeaderColumn>
+        <TableHeaderColumn>Title</TableHeaderColumn>
+        <TableHeaderColumn>Body</TableHeaderColumn>
       </TableRow>
     </TableHeader>
     <TableBody>
-      <TableRow>
-        <TableRowColumn>{this.props.diaries}</TableRowColumn>
-        <TableRowColumn>{this.props.diaries}</TableRowColumn>
-        <TableRowColumn>{this.props.diaries}</TableRowColumn>
+     {this.props.index.diaries.map((diary) => {
+     return <TableRow key={diary.id}>
+        <TableRowColumn>{diary.id}</TableRowColumn>
+        <TableRowColumn>{diary.title}</TableRowColumn>
+        <TableRowColumn>{diary.body}</TableRowColumn>
       </TableRow>
+      })}
     </TableBody>
   </Table>
+   <RaisedButton label="前の10件" secondary={true} onClick={() => this.props.backPage()} />
+  <RaisedButton label="次の10件" onClick={() => this.props.nextPage()} />
   </div>
   }
 }

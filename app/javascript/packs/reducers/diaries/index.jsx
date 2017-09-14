@@ -1,11 +1,20 @@
 import * as Constant from "../../constants/diaries/index"
-import request from 'superagent/superagent'
-function diaries() {
-return
+
+function get_diaries(page) {
+  let request = new XMLHttpRequest();
+request.open('GET', 'http://localhost:3000/api/diaries?page='+page, false);  // `false` makes the request synchronous
+request.send(null);
+
+if (request.status === 200) {
+  return JSON.parse(request.response)
+} else {
+  return []
 }
+}
+
 const initialState = {
-  page: 1,
-  diaries: diaries()
+  page: 0,
+  diaries: get_diaries(0)
 }
 
 export default function reducer(state = initialState, action) {
@@ -13,22 +22,29 @@ export default function reducer(state = initialState, action) {
   switch(action.type) {
 
     case Constant.next: {
-      return {page: state.page+1,
-        diaries: state.diaries}
-      }
-
-      case Constant.back: {
-        return {page: state.page-1,
-          diaries: state.diaries }
+      if(get_diaries(state.page+1).length > 0){
+        return {
+          page: state.page+1,
+          diaries: get_diaries(state.page+1)
         }
-
-        default: {
-         return request.get('http://localhost:3000/api/diaries').end((err, res) => {
-          return {page: state.page,
-                  diaries: res.body
-                };
-        });
-        }
-
+      }else{
+        return state
       }
     }
+
+    case Constant.back: {
+      if(get_diaries(state.page-1).length > 0){
+        return {
+          page: state.page-1,
+          diaries: get_diaries(state.page-1)
+        }
+      }else{
+        return state
+      }
+    }
+
+    default: {
+      return state
+    }
+  }
+}
