@@ -4,8 +4,12 @@ class Api::DiariesController < Api::ApplicationController
   # GET /diaries
   # GET /diaries.json
   def index
-    @diaries = Diary.offset(params[:page].to_i*10).limit(10)
-    render json: @diaries
+    if params[:page].to_i >= 0
+      @diaries = Diary.offset(params[:page].to_i*10).limit(10)
+    else
+      @diaries = []
+    end
+      render json: @diaries
   end
 
   # GET /diaries/1
@@ -51,7 +55,7 @@ class Api::DiariesController < Api::ApplicationController
   # DELETE /diaries/1.json
   def destroy
     @diary.destroy
-      render json: (head :no_content)
+    render json: (head :no_content)
   end
 
   private

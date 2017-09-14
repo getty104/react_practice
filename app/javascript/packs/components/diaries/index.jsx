@@ -31,7 +31,7 @@ export default class Index extends React.Component {
     </TableBody>
   </Table>
    <RaisedButton label="前の10件" secondary={true} onClick={() => this.props.backPage()} />
-  <RaisedButton label="次の10件" onClick={() => this.props.nextPage()} />
+  <RaisedButton label="次の10件" primary={true} onClick={() => this.props.nextPage()} />
   </div>
   }
 }

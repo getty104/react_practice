@@ -15,7 +15,7 @@ const store =   createStore(reducer)
 
 render(
 <Provider store={store}>
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+  <MuiThemeProvider>
     <div>
       <AppBar title="Diary" />
       <Router>

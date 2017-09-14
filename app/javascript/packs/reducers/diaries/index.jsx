@@ -7,8 +7,6 @@ request.send(null);
 
 if (request.status === 200) {
   return JSON.parse(request.response)
-} else {
-  return []
 }
 }
 
