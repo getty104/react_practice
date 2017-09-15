@@ -3,10 +3,11 @@ import { BrowserRouter as Router, Switch, Route, Redirect,  Link, NavLink, withR
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import { render } from 'react-dom'
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
+import {AppBar, IconButton, IconMenu, MenuItem} from 'material-ui';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+
 
 import Index from './containers/diaries/index'
 import reducer from './reducers/root-reducer'
@@ -17,7 +18,16 @@ render(
 <Provider store={store}>
   <MuiThemeProvider>
     <div>
-      <AppBar title="Diary" />
+      <AppBar title="Diary"  iconElementLeft={
+                     <IconMenu
+                         iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
+                         anchorOrigin={{horizontal: 'left', vertical: 'top'}}
+                         targetOrigin={{horizontal: 'left', vertical: 'top'}}
+                     >
+                         <MenuItem primaryText="Index" href="#" />
+                         <MenuItem primaryText="Form" href="#" />
+                     </IconMenu>
+                 }/>
       <Router>
         <Switch>
           <Route path="/" component={Index}>
