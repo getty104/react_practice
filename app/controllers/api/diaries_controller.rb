@@ -4,12 +4,10 @@ class Api::DiariesController < Api::ApplicationController
   # GET /diaries
   # GET /diaries.json
   def index
-    if params[:page].to_i >= 0
-      @diaries = Diary.offset(params[:page].to_i*10).limit(10)
-    else
-      @diaries = []
-    end
-      render json: @diaries
+      diaries = Diary.offset(params[:page].to_i*10).limit(10)
+      size =  Diary.all.size
+
+      render json: {diaries: diaries, size: size}
   end
 
   # GET /diaries/1
