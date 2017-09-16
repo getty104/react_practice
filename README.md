@@ -10,7 +10,7 @@ database: mysql
 * Database initialization
 ```rails db:migrate db:seed```
 * How to set up
-```rails webpacker:install:react``
+```rails webpacker:install:react```
 * Services (job queues, cache servers, search engines, etc.)
 start server
 ```bundle exec foreman start```
