@@ -12,8 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 class Diaries {
   page(page) {
     let request = new XMLHttpRequest();
-    request.open('GET', 'http://localhost:3000/api/diaries?page='+page, false);  // `false` makes the request synchronous
-    request.send(null);
+    request.open('GET', `/api/diaries?page=${page}`,false);  // `false` makes the request synchronous
+    request.send();
     if (request.status === 200) {
         return JSON.parse(request.response)
     }
@@ -29,6 +29,7 @@ export default class Index extends React.Component {
     let json = this.diaries.page(this.props.index.page)
     let diaries = json.diaries
     let size = json.size
+
     return <div>
     <Table>
     <TableHeader>

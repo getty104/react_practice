@@ -1,24 +1,16 @@
 # README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
+Railsのwebpackオプションを用いて作成したサンプルアプリです
 * Ruby version
-
+2.4.1
 * System dependencies
-
-* Configuration
-
+rails: 5.1
+database: mysql
 * Database creation
-
+```rails db:create```
 * Database initialization
-
-* How to run the test suite
-
+```rails db:migrate db:seed```
+* How to set up
+```rails webpacker:install:react``
 * Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+start server
+```bundle exec foreman start```
