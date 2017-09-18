@@ -32,14 +32,14 @@ export default class Index extends React.Component {
 
     return <div>
     <Table>
-    <TableHeader>
+    <TableHeader displaySelectAll={false } adjustForCheckbox={false}>
       <TableRow>
         <TableHeaderColumn>ID</TableHeaderColumn>
         <TableHeaderColumn>Title</TableHeaderColumn>
         <TableHeaderColumn>Body</TableHeaderColumn>
       </TableRow>
     </TableHeader>
-    <TableBody>
+    <TableBody  displayRowCheckbox={false}>
      {diaries.map((diary) => {
      return <TableRow key={diary.id}>
         <TableRowColumn>{diary.id}</TableRowColumn>
